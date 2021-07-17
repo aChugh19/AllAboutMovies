@@ -1,0 +1,41 @@
+<%-include("./partials/header.ejs")%>
+
+<div class="jumbotron jumbotron-fluid" style="margin-bottom: 0px; background-color:	#6e7f80;  margin-top: 30px;">
+    <div class="container">
+        <h2 style="text-align: center;font-family: 'Encode Sans SC'; color:burlywood;">Movies Search engine</h2>
+        <div style="display: block; text-align: center;">
+            <form action="/search" method="Get">
+                <input type="text" name="mn" placeholder="Search" size="30" required>
+                <br>
+                <button class="btn btn-outline-primary" style="margin-top: 6px;">Search</button>
+            </form>
+        </div>
+        <hr class="my-4" style="background-color:  burlywood;">
+    </div>
+</div>
+
+<div class="container"  style="margin-left: auto;margin-right: auto;">
+    <div class="row">
+    <%if(md.Response==="True"){%>
+        <%md['Search'].forEach((item)=>{%>
+            <%if(item.Poster!=="N/A"){%>
+            <div class="col" style="margin-top: 8px;margin-bottom: 8px;">
+                <div class="card mb-3" style="width: 18rem; height: 36rem; margin-left: auto;margin-right: auto; padding: 2px; background-color: #6e7f80; color: burlywood;">
+                    <img src= <%=item.Poster%> class="card-img-top" alt="No Image Available" width="50" height="400" >
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title" ><%=item.Title%></h5>
+                        <p class="card-text">
+                            Year: <%=item.Year%>
+                        </p>
+                        <a class="btn  btn-outline-primary" href="/movieInfo/<%=item.imdbID%>" role="button">More Info</a>
+                    </div>
+                </div>
+            </div>
+            <%}%>
+        <%})%>
+    <%}else{%>
+        <h1 style="margin:auto;">No Results Found!!!</h1>
+    <%}%>
+    </div>
+</div>
+<%-include("./partials/footer.ejs")%>

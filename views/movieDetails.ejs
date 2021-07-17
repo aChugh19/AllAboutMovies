@@ -1,0 +1,62 @@
+<%-include('./partials/header.ejs')%>
+<div class="jumbotron jumbotron-fluid" style="background-color: #6e7f80;">
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <img src="<%=movieData.Poster%>" alt="No image to show" width="100%" height="">
+            </div>
+            <div class="col-8" style="margin-top: auto; margin-bottom: auto;">
+                <h2 style="text-align: center;"><%=movieData.Title%></h2>
+                <br> 
+                <span style="font-weight: 500;">Genre:</span> 
+                <%=movieData.Genre%>
+                <br>
+                <br>
+                <span style="font-weight: 500;">Discription:</span> 
+                <%=movieData.Plot%>
+                <br>
+                <br>
+                <span style="font-weight: 500;">Rating IMdb:</span> 
+                <%if(movieData.Ratings.length===0){%>
+                    N/A
+                <%}else{%>
+                <%=movieData.Ratings[0].Value%>
+                <%}%>
+                <br>
+                <br>
+                <span style="font-weight: 500;">Release Date:</span> 
+                <%=movieData.Released%>
+                <br>
+                <br>
+                <span style="font-weight: 500;">Cast:</span>
+                <%=movieData.Actors%>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container"  style="margin-left: auto;margin-right: auto;">
+    <div class="row">
+    <%if(extraData.Response==="True"){%>
+        <%extraData['Search'].forEach((item)=>{%>
+            <%if(item.Poster!=="N/A"){%>
+            <div class="col" style="margin-top: 8px;margin-bottom: 8px;">
+                <div class="card mb-3" style="width: 18rem; height: 36rem; margin-left: auto;margin-right: auto; padding: 2px; background-color: #6e7f80; color: burlywood;">
+                    <img src= <%=item.Poster%> class="card-img-top" alt="No Image Available" width="50" height="400" >
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title" ><%=item.Title%></h5>
+                        <p class="card-text">
+                            Year: <%=item.Year%>
+                        </p>
+                        <a class="btn  btn-outline-primary" href="/movieInfo/<%=item.imdbID%>" role="button">More Info</a>
+                    </div>
+                </div>
+            </div>
+            <%}%>
+        <%})%>
+    <%}else{%>
+        <h1 style="margin:auto;">No Results Found!!!</h1>
+    <%}%>
+    </div>
+</div>
+<%-include('./partials/footer.ejs')%>

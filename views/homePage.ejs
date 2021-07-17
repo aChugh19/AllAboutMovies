@@ -1,0 +1,15 @@
+<%-include("./partials/header.ejs") %>
+<div class="jumbotron" style="background-color: #F7E7CE; margin-top: 30px;">
+    <h1 class="display-4" style="text-align: center; font-family: 'Dancing Script'; color: #7b3f00;" >All About Movies</h1>
+    <p class="lead" style="text-align: center; font-family: 'Cormorant Garamond'; color:#7b3f00">Know more about your favourite movies</p>
+    <hr class="my-4">
+    <h4 style="text-align: center;  font-family: 'Abril Fatface';">Movies Search engine</h4>
+    <div style="display: block; text-align: center;">
+        <form action="/search" method="Get">
+            <input type="text" name="mn" placeholder="Search" size="30" required>
+            <br>
+            <button class="btn btn-outline-primary" style="margin-top: 6px;">Search</button>
+        </form>
+    </div>
+</div>
+<%-include("./partials/footer.ejs") %>
